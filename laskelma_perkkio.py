@@ -1,5 +1,3 @@
-# -*- coding: cp1252 -*-
-
 """
 @copyright: 2013 by Pauli Rikula <pauli.rikula@gmail.com>
 @license: MIT <http://www.opensource.org/licenses/mit-license.php>
@@ -123,9 +121,9 @@ for i in range( simulaation_kesto ):
     tase -= maskutiedot['menot']
     kovarahalaina_maksettavaa =  maskutiedot['maksettavaa']
     
-    print('tase lainakulujen j‰lkeen:', tase)
+    print('tase lainakulujen j√§lkeen:', tase)
     
-    print('tase lainakulujen j‰lkeen maksamattomat lainat mukaanluettuna:', tase - korkotukilaina_maksettavaa - kovarahalaina_maksettavaa)
+    print('tase lainakulujen j√§lkeen maksamattomat lainat mukaanluettuna:', tase - korkotukilaina_maksettavaa - kovarahalaina_maksettavaa)
     tase_list.append(tase - korkotukilaina_maksettavaa - kovarahalaina_maksettavaa)
     
     if tase > 0:
@@ -140,8 +138,8 @@ for i in range( simulaation_kesto ):
         if kuviotiedot:
             print(kuviotiedot)
             tase += kuviotiedot['tulo'] * (1+inflaatio) ** i
-    print('tase kuvioiden tulojen j‰lkeen', tase)
-    print('tase kuvioiden tulojen  j‰lkeen maksamaton laina mukaanluettuna:', tase - maskutiedot['maksettavaa'])
+    print('tase kuvioiden tulojen j√§lkeen', tase)
+    print('tase kuvioiden tulojen  j√§lkeen maksamaton laina mukaanluettuna:', tase - maskutiedot['maksettavaa'])
     
     
 
@@ -149,10 +147,10 @@ tase = tase - maskutiedot['maksettavaa']
 
 
 investoitu = (oma_raha + korkotukilaina +kovan_rahan_laina) * (1+inflaatio) ** simulaation_kesto
-print("oletetetaan, ett‰ 120 v p‰‰st‰ mets‰st‰ saa myytyn‰ saman hinnan eli",  investoitu)
+print("oletetetaan, ett√§ 120 v p√§√§st√§ mets√§st√§ saa myytyn√§ saman hinnan eli",  investoitu)
 vuosikorko = math.log((tase + investoitu) / oma_raha ) / simulaation_kesto
 
-print('keskim‰‰r‰inen vuosikorko', vuosikorko, 'kun simulaation kesto oli', simulaation_kesto," v. ja investoitu",oma_raha + korkotukilaina +kovan_rahan_laina, "(sis lainat) inflaatio oli ", inflaatio,' talletuskorko', talletuskorko)
+print('keskim√§√§r√§inen vuosikorko', vuosikorko, 'kun simulaation kesto oli', simulaation_kesto," v. ja investoitu",oma_raha + korkotukilaina +kovan_rahan_laina, "(sis lainat) inflaatio oli ", inflaatio,' talletuskorko', talletuskorko)
 
 
 makeplot_from_lists(aika_list, tase_list, yearly, step = 2000)

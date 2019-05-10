@@ -1,4 +1,3 @@
-# -*- coding: cp1252 -*-
 """
 @copyright: 2013 by Pauli Rikula <pauli.rikula@gmail.com>
 @license: MIT <http://www.opensource.org/licenses/mit-license.php>
@@ -7,19 +6,19 @@ from kuvio import *
 
 
 Kuviot = [
-#    ProsenttiKuvio("16", 2.0, Vakiot.paikka["MT"], 50, Vakiot.luokka["02"],  85  ),
-    ProsenttiKuvio("1.1", 1.8, Vakiot.paikka["MT"], 41, Vakiot.luokka["03"],  60  ),
-    ProsenttiKuvio("1.2", 2.5, Vakiot.paikka["MT"], 41, Vakiot.luokka["02"],  30  ),
-    ProsenttiKuvio("2.0", 3.8, Vakiot.paikka["CT"], 61, Vakiot.luokka["02"],  66 ),
-    ProsenttiKuvio("3.0", 2.2, Vakiot.paikka["VT"], 131, Vakiot.luokka["04"],  193 ),
-    ProsenttiKuvio("4.0", 2.6, Vakiot.paikka["CT"], 46, Vakiot.luokka["02"],  34 ),
-    ProsenttiKuvio("5.0", 0.5, Vakiot.paikka["CT"], 131, Vakiot.luokka["04"],  195 ),
-    ProsenttiKuvio("6.0", 1.0, Vakiot.paikka["VT"], 48, Vakiot.luokka["03"],  101 ),
-    ProsenttiKuvio("6.1", 0.7, Vakiot.paikka["VT"], 36, Vakiot.luokka["02"],  32 ),
-    ProsenttiKuvio("6.2", 1.8, Vakiot.paikka["VT"], 36, Vakiot.luokka["02"],  78 ),
-    ProsenttiKuvio("6.3", 2.9, Vakiot.paikka["VT"], 36, Vakiot.luokka["02"],  55 ),
-    ProsenttiKuvio("7.0", 5.1, Vakiot.paikka["MT"], 48, Vakiot.luokka["02"],  105 ),
-    ProsenttiKuvio("7.1", 1.9, Vakiot.paikka["MT"], 54, Vakiot.luokka["02"],  53 )
+#    ProsenttiKuvio("16", 2.0, Vakiot.paikka["MT"], 50, Vakiot.luokka["02"], 85),
+    ProsenttiKuvio("1.1", 1.8, Vakiot.paikka["MT"], 41, Vakiot.luokka["03"], 60),
+    ProsenttiKuvio("1.2", 2.5, Vakiot.paikka["MT"], 41, Vakiot.luokka["02"], 30),
+    ProsenttiKuvio("2.0", 3.8, Vakiot.paikka["CT"], 61, Vakiot.luokka["02"], 66),
+    ProsenttiKuvio("3.0", 2.2, Vakiot.paikka["VT"], 131, Vakiot.luokka["04"], 193),
+    ProsenttiKuvio("4.0", 2.6, Vakiot.paikka["CT"], 46, Vakiot.luokka["02"], 34),
+    ProsenttiKuvio("5.0", 0.5, Vakiot.paikka["CT"], 131, Vakiot.luokka["04"], 195),
+    ProsenttiKuvio("6.0", 1.0, Vakiot.paikka["VT"], 48, Vakiot.luokka["03"], 101),
+    ProsenttiKuvio("6.1", 0.7, Vakiot.paikka["VT"], 36, Vakiot.luokka["02"], 32),
+    ProsenttiKuvio("6.2", 1.8, Vakiot.paikka["VT"], 36, Vakiot.luokka["02"], 78),
+    ProsenttiKuvio("6.3", 2.9, Vakiot.paikka["VT"], 36, Vakiot.luokka["02"], 55),
+    ProsenttiKuvio("7.0", 5.1, Vakiot.paikka["MT"], 48, Vakiot.luokka["02"], 105),
+    ProsenttiKuvio("7.1", 1.9, Vakiot.paikka["MT"], 54, Vakiot.luokka["02"], 53)
  
     ]
 
