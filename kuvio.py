@@ -1,4 +1,3 @@
-# -*- coding: cp1252 -*-
 """
 @copyright: 2013 by Pauli Rikula <pauli.rikula@gmail.com>
 @license: MIT <http://www.opensource.org/licenses/mit-license.php>
@@ -30,23 +29,23 @@ class Vakiot:
     
     luokat = [
         Lyhenne("A0", "Aukea"),
-        Lyhenne("S0", "Siemenmetsikkö"),
+        Lyhenne("S0", "SiemenmetsikkÃ¶"),
         Lyhenne("T1", "Taimikko, alle 1.3 m"),
         Lyhenne("T2", "Taimikko, yli 1.3 m"),
         Lyhenne("Y1", "Yksipuolinen taimikko"),
-        Lyhenne("02", "Nuori kasvumetsikkö"),
-        Lyhenne("03", "Varttunut kasvumetsikkö"),
-        Lyhenne("04", "Uudistuskypsä metsikkö"),
-        Lyhenne("05", "Suojuspuumetsikkö"),
-        Lyhenne("06", "Vajaamuotoinen metsikkö")
+        Lyhenne("02", "Nuori kasvumetsikkÃ¶"),
+        Lyhenne("03", "Varttunut kasvumetsikkÃ¶"),
+        Lyhenne("04", "UudistuskypsÃ¤ metsikkÃ¶"),
+        Lyhenne("05", "SuojuspuumetsikkÃ¶"),
+        Lyhenne("06", "Vajaamuotoinen metsikkÃ¶")
         ]
 
     puut = [
-        Lyhenne("Mät", "Mänty tukki"),
+        Lyhenne("MÃ¤t", "MÃ¤nty tukki"),
         Lyhenne("Kut", "Kuusitukki"),
         Lyhenne("Kot", "Koivutuki"),
         Lyhenne("Mut", "muutukki"),
-        Lyhenne("Mäe", "Mäntykuitu"),
+        Lyhenne("MÃ¤e", "MÃ¤ntykuitu"),
         Lyhenne("Kuk", "kuusikuitu"),
         Lyhenne("Kok", "koivukuitu"),
         Lyhenne("Muk", " muukuitu"),
@@ -58,11 +57,11 @@ class Vakiot:
     puu = dict([(p.lyhyt, p) for p in  puut])
     
     puun_arvo = {
-        puu["Mät"]:50.58,
+        puu["MÃ¤t"]:50.58,
         puu["Kut"]:47.9,
         puu["Kot"]:46.74,
         puu["Mut"]:6.00,
-        puu["Mäe"]:14.18,
+        puu["MÃ¤e"]:14.18,
         puu["Kuk"]:21.88,
         puu["Kok"]:13.9,
         puu["Muk"]:5.0,
@@ -81,7 +80,7 @@ class Vakiot:
         paikka["Muu"]:0.0,        
         }
     
-    """Männyn kasvuprosentti. laske ite muille. lisäksi absoluuttinen kasvu olisi parempi kuin kasvupros, mutta tuli jo arvioitua ..."""
+    """MÃ¤nnyn kasvuprosentti. laske ite muille. lisÃ¤ksi absoluuttinen kasvu olisi parempi kuin kasvupros, mutta tuli jo arvioitua ..."""
     kasvuprosentti = {
        (paikka["MT"],luokka["A0"]):0.0,
        (paikka["MT"],luokka["T1"]):0.41,
@@ -97,7 +96,7 @@ class Vakiot:
        (paikka["VT"],luokka["03"]):0.027,
        (paikka["VT"],luokka["04"]):0.0175,
        
-       #nämä on harusta vedettyjä
+       #nÃ¤mÃ¤ on hatusta vedettyjÃ¤
        (paikka["CT"],luokka["A0"]):0.0,
        (paikka["CT"],luokka["T1"]):0.28,
        (paikka["CT"],luokka["T2"]):0.28,
@@ -132,39 +131,39 @@ class ProsenttiKuvio:
         return "ID:" +self.ID +" ala:" +str(self.ala) +": ("+ str(self.paikka) +"," +str(self.luokka)+ ") ika:" + str(self.ika) + " m3: "+  str(self.kuutiot)
     
     def simuloi(self):
-        print self
+        print(self)
         self.ika += 1
         kasvuprosentti = Vakiot.kasvuprosentti[ (self.paikka, self.luokka)]
         if self.luokka == Vakiot.luokka["A0"] or  ( self.kuutiot == 0 and self.luokka  in [Vakiot.luokka["T1"], Vakiot.luokka["T2"]] ) :
             self.kuutiot += 0.1 * self.ala
-            print "aukio kasvaa taimea 0.1 m3 / ha /v",
+            print("aukio kasvaa taimea 0.1 m3 / ha /v", end=' ')
         else:
             self.kuutiot += kasvuprosentti * self.kuutiot
-            print 'kasvuprosentti:',kasvuprosentti,
-        print '-> uusi m3:', self.kuutiot
+            print('kasvuprosentti:',kasvuprosentti, end=' ')
+        print('-> uusi m3:', self.kuutiot)
         if self.luokka == Vakiot.luokka["A0"] and self.ika >= 10:
             self.kuutiot = 10 * self.ala
             self.luokka = Vakiot.luokka["T2"]
-            print "A0 -> T2:"
-            print self
+            print("A0 -> T2:")
+            print(self)
             return {
                 }
         if self.luokka == Vakiot.luokka["T1"] and self.ika >= 10:            
             self.luokka = Vakiot.luokka["T2"]
-            print "T1 -> T2:"
-            print self
+            print("T1 -> T2:")
+            print(self)
             return {                
                 }
         if self.luokka == Vakiot.luokka["T2"] and self.ika >= 35:
             self.luokka = Vakiot.luokka["02"]
-            print "T2 -> 02 (aika):"
-            print  self
+            print("T2 -> 02 (aika):")
+            print(self)
             return {
                 }
         if self.luokka == Vakiot.luokka["T2"] and self.kuutiot >= 28 * self.ala:
             self.luokka = Vakiot.luokka["02"]
-            print "T2 -> 02 (kuutiot >= 28 m3 / ha):"
-            print  self
+            print("T2 -> 02 (kuutiot >= 28 m3 / ha):")
+            print(self)
             return {
                 }
         if self.luokka == Vakiot.luokka["02"] and self.kuutiot >= 90 * self.ala:
@@ -172,26 +171,26 @@ class ProsenttiKuvio:
             kuutiot_pois = self.kuutiot - uudet_kuutiot
             tulo = 14. * kuutiot_pois
             self.kuutiot = uudet_kuutiot
-            print "Ensiharvennus (kuutiot)"
+            print("Ensiharvennus (kuutiot)")
             self.luokka = Vakiot.luokka["03"]
-            print "02 -> 03"
-            print  self
+            print("02 -> 03")
+            print(self)
             return {'tulo': tulo, 'kuutiot_pois':kuutiot_pois }
         
         if self.luokka == Vakiot.luokka["02"] and self.ika >= 55:
             returned = {}
             if self.kuutiot >=  75. * self.ala:
-                print "Ensiharvennus (ikä)"
+                print("Ensiharvennus (ikÃ¤)")
                 uudet_kuutiot = 75. * self.ala
                 kuutiot_pois = self.kuutiot - uudet_kuutiot
                 tulo = 14. * kuutiot_pois  
                 self.kuutiot = uudet_kuutiot  
                 returned = {'tulo': tulo, 'kuutiot_pois':kuutiot_pois }
             else:
-                print "ei tarpeeksi puuta ensiharvennukseen"
+                print("ei tarpeeksi puuta ensiharvennukseen")
             self.luokka = Vakiot.luokka["03"]
-            print "02 -> 03"
-            print  self
+            print("02 -> 03")
+            print(self)
             return returned
         
         if self.luokka == Vakiot.luokka["03"] and self.kuutiot >= 130 * self.ala:
@@ -200,25 +199,25 @@ class ProsenttiKuvio:
             tulo = 20.* kuutiot_pois
             self.kuutiot = uudet_kuutiot
             self.luokka = Vakiot.luokka["04"]
-            print "Harvennushakkuu (kuutiot)"
-            print "03 -> 04"
-            print  self
+            print("Harvennushakkuu (kuutiot)")
+            print("03 -> 04")
+            print(self)
             return {'tulo': tulo, 'kuutiot_pois':kuutiot_pois }
         
         if self.luokka == Vakiot.luokka["03"] and self.ika >= 80:
             returned = {}
             if self.kuutiot >=  50. * self.ala:
-                print "Harvennushakkuu (ikä)"
+                print("Harvennushakkuu (ikÃ¤)")
                 uudet_kuutiot = 50. * self.ala
                 kuutiot_pois = self.kuutiot - uudet_kuutiot
                 tulo = 20.* kuutiot_pois
                 self.kuutiot = uudet_kuutiot
                 returned = {'tulo': tulo, 'kuutiot_pois':kuutiot_pois }
             else:
-               print "ei tarpeeksi puuta Harvennushakkuuseen" 
+               print("ei tarpeeksi puuta Harvennushakkuuseen") 
             self.luokka = Vakiot.luokka["04"]
-            print "03 -> 04"
-            print  self
+            print("03 -> 04")
+            print(self)
             return returned
         
         if self.luokka == Vakiot.luokka["04"] and ( self.kuutiot >= 130 * self.ala or self.ika >= 110):
@@ -230,26 +229,26 @@ class ProsenttiKuvio:
             metsasta_saatava_myyntitulo_kuitupuu = kuitua * 20.
             
             menot_metsan_uudistus_kulut_tukki = metsasta_saatava_myyntitulo_tukkipuu * 0.1
-            print 'uudistuskulut:', menot_metsan_uudistus_kulut_tukki
+            print('uudistuskulut:', menot_metsan_uudistus_kulut_tukki)
             
             tulo = metsasta_saatava_myyntitulo_tukkipuu  + metsasta_saatava_myyntitulo_kuitupuu - menot_metsan_uudistus_kulut_tukki
             
             self.kuutiot = 0
             self.ika = 0
             self.luokka = Vakiot.luokka["A0"]
-            print "Päätehakkuu (%s)"%("ikä" if self.ika >= 110 else "kuutiot")
-            print "04 -> A0"
-            print  self
+            print("PÃ¤Ã¤tehakkuu (%s)"%("ikÃ¤" if self.ika >= 110 else "kuutiot"))
+            print("04 -> A0")
+            print(self)
             return {'tulo': tulo, 'kuutiot_pois':kuutiot_pois }
 
 
 
 if __name__ == "__main__":
-    print Vakiot.paikka["Lehto"]
-    print Vakiot.luokka["T1"]
-    print Vakiot.kasvuprosentti[(Vakiot.paikka["MT"],Vakiot.luokka["T1"])]
-    print Vakiot.puun_arvo[Vakiot.puu["Mät"]]
-    print Vakiot.paikan_arvo[Vakiot.paikka["MT"]]
+    print(Vakiot.paikka["Lehto"])
+    print(Vakiot.luokka["T1"])
+    print(Vakiot.kasvuprosentti[(Vakiot.paikka["MT"],Vakiot.luokka["T1"])])
+    print(Vakiot.puun_arvo[Vakiot.puu["MÃ¤t"]])
+    print(Vakiot.paikan_arvo[Vakiot.paikka["MT"]])
     
     #(self, ID, paikka, luokka, ala, ika, kuutiot):
     testikuvio = ProsenttiKuvio("12", 2.2,Vakiot.paikka["MT"],  50, Vakiot.luokka["02"], 110 )
@@ -260,11 +259,11 @@ if __name__ == "__main__":
     kuutiot_list = []
     for i in range(200):
         vuosi = i+2013
-        print "-"*60
-        print "vuosi:",vuosi
+        print("-"*60)
+        print("vuosi:",vuosi)
         aika_list.append(datetime.datetime(vuosi,1,1))
         kuutiot_list.append(testikuvio.kuutiot)
-        print testikuvio.simuloi()
+        print(testikuvio.simuloi())
     
     makeplot_from_lists(aika_list, kuutiot_list, yearly, step = 100)
     

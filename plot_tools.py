@@ -3,7 +3,6 @@
 @license: MIT <http://www.opensource.org/licenses/mit-license.php>
 """
 
-
 import matplotlib.pyplot as plt
 #from matplotlib.ticker import Formatter
 from matplotlib import dates

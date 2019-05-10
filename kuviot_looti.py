@@ -25,7 +25,7 @@ Kuviot = [
 
 
 if __name__ == "__main__":
-    print "Lootin metsien ennusteet"
+    print("Lootin metsien ennusteet")
     tulot = 0
     kuutiot = 0
     kuutiot_list = []
@@ -35,18 +35,18 @@ if __name__ == "__main__":
     
     for i in range(40):
         vuosi = 2013 + i
-        print '*'*60
-        print 'Vuosi', vuosi
+        print('*'*60)
+        print('Vuosi', vuosi)
         aika_list.append(datetime.datetime(vuosi,1,1))
 
         metsakuutiot = 0
         
         for kuvio in Kuviot:
-            print '-'* 60
+            print('-'* 60)
             r = kuvio.simuloi()
             metsakuutiot += kuvio.kuutiot
             if r:
-                print r
+                print(r)
                 
                 tulot += r['tulo']
                 kuutiot += r['kuutiot_pois']
@@ -55,11 +55,11 @@ if __name__ == "__main__":
         kuutiot_list.append(kuutiot)
         tulot_list.append(tulot)
         
-        print '-'* 60
-        print 'tulot:', tulot
-        print 'tulot / vuosi:', tulot / (i+1)
-        print 'kuutiot:', kuutiot
-        print 'kuutiot / vuosi:', kuutiot / (i+1)
+        print('-'* 60)
+        print('tulot:', tulot)
+        print('tulot / vuosi:', tulot / (i+1))
+        print('kuutiot:', kuutiot)
+        print('kuutiot / vuosi:', kuutiot / (i+1))
     
     makeplot_from_lists(aika_list, metsien_kuutiot, yearly, step = 100)
     makeplot_from_lists(aika_list, kuutiot_list, yearly, step = 100)
